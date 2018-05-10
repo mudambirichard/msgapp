@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container">
+<h1> Please Login</h1>
+{% from "includes/_formhelpers.html" import render_field %}
+
+<form action="" method="POST">
+ <input type="text" name="username"  placeholder="Username" value="{{request.form.username}}">
+
+
+ <input type="password" placeholder="Password" name="password" value="{{request.form.password}}">
+
+<input  class="btn btn-danger"  type="submit" value="Login">
+</form>
+
+ {% if error %}
+   <p class="error"><strong>Error:</strong>{{ error }}</p>
+ {% endif %}
+</div>
+
+{% endblock %}

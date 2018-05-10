@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>{{meal.title}}</h1>
+  <small>Written  by  {{meal.author}} on {{meal.create_date}}</small>
+  <hr>
+  <div>
+  	{{meal.body}}
+  </div>
+{% endblock %}

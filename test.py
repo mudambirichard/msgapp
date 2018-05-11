@@ -37,7 +37,25 @@ class FlaskTestCase(unittest.TestCase):
             response = tester.get('/api/v1/auth/register', content_type='html/text')
             self.assertFalse(b'Please register' in response.data)
         
+        def test_edit(self):
+            tester =app.test_client(self)
+            response = tester.get('/api/v1/edit', content_type='html/text')
+            self.assertFalse(b'Please edit' in response.data)
+        
+        def test_add(self):
+            tester =app.test_client(self)
+            response = tester.get('/api/v1/add', content_type='html/text')
+            self.assertFalse(b'Please add' in response.data)
+        
+        def test_order(self):
+            tester =app.test_client(self)
+            response = tester.get('/api/v1/order', content_type='html/text')
+            self.assertFalse(b'Please order' in response.data)
 
+        def test_welcome(self):
+            tester =app.test_client(self)
+            response = tester.get('/welcome', content_type='html/text')
+            self.assertFalse(b'Please welcome' in response.data)
 
 if __name__ == '__main__':
 	unittest.main()

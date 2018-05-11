@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block title %}dashboard {% endblock %}
+{% block body %}
+ <h1>Dashboard<small> welcome to admin page{{session.username}}</small></h1>
+ <div class="container">
+
+ <a class="btn btn-success" href="/add_meal">Post Meal</a>
+ <br>
+ <table class="table table-striped">
+ <tr>
+     <th>F.name</th>
+ 	  <th>L.name</th>
+ 	   <th>Phone No</th>
+ 	   <th>Door No</th>
+ 	   <th>Adress1</th>
+ 	    <th>Postcode</th>
+ 	   <th>Email</th>
+
+ </tr>
+  <tr>
+    <th>Mudambi</th>
+ 	  <th>Richard</th>
+ 	   <th>0773425767</th>
+ 	   <th>098</th>
+ 	   <th>Buloba street</th>
+ 	    <th>23</th>
+ 	   <th>muda@gmail.com</th>
+ </tr>
+ {% for meal in meals %}
+
+{% endfor %}
+ 	
+ </table>
+  <form action="" method="post">
+ 	 <input type="hidden" name="_method" value="DELETE" >
+ 	 <input type="submit" value="Delete" class="btn btn-danger  pull-right">
+ 		
+ 	</form>
+ </div>
+
+{% endblock %}

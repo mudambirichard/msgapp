@@ -18,10 +18,20 @@ def is_logged_in(f):
 			flash('Unauthorised, Please login', 'danger')
 			return redirect(url_for('login'))
 	return wrap
-#========================INDEX / HOME PAGE========================#
+
 @app.route('/')
 def index():
 	return render_template('home.html')
+
+@app.route('/home')
+def home():
+	return render_template('home.html') 
+
+#=================WELCOME PAGE==========================#
+	
+@app.route('/welcome')
+def welcome():
+	return render_template("welcome.html")
 
 
  #=======================LOGIN PAGE================================================#
@@ -41,41 +51,28 @@ def login_page():
 	return render_template('login.html', error=error)
 
 
-@app.route('/logout')
+@app.route('/api/v1/logout')
 def logout():
 	session.clear()
 	flash('You are now logged out', 'success')
 	return redirect(url_for('login'))
+#====================================dashboard=====================#
 
-
-
-@app.route('/dashboard')
+@app.route('/api/v1/dashboard')
 def dashboard():
     return render_template('dashboard.html', meals = Meals)
 
-class MealForm(Form):
-	title = StringField('Title', [validators.Length(min=1, max=200)])
-	body = TextAreaField('Body', [validators.Length(min=30)])
 
+#============================edit==========================#
 
-@app.route('/edit_meal/<string:id>', methods=['POST', 'GET'])
+@app.route('/edit_meal', methods=['POST', 'GET'])
 def edit_meal():
-	return render_template(id)
-        form.title.data = meal['title']
-	form.body.data = meal['body']
-
-	#form = ArticleForm(request.form)
-	if request.method == 'POST' and form.validate():
-		title = request.form['title']
-		body =  request.form['body']
-
-	flash('Meal Edited', 'success')
-
-        return redirect(url_for('dashboard'))
-        return render_template('edit_meal.html', form=form)
+	
+    return render_template('edit_meal.html')
+#==========================add page========================#
 
 @app.route('/add_meal', methods=['GET', 'POST'])
-def add_article():
+def add_meal():
 	form = MealForm(request.form)
 	if request.method == 'POST' and form.validate():
 		title = form.title.data
@@ -84,45 +81,37 @@ def add_article():
 		flash('Meal Update', 'success')
 
 		return redirect(url_for('dashboard'))
-	return render_template('edit_meal.html', form=form)
+	return render_template('add_meal.html', form=form)
 
+#==============deletepage=======================#
 
-
-@app.route('/delete_article/<string:id>', methods=['POST'])
+@app.route('/delete_meal/<string:id>', methods=['POST'])
 def delete_meal(id):
     return redirect(url_for('dashboard'))
-#============================LOGIN PAGE==================================================#
 
-@app.route('/home')
-def home():
-	return render_template('home.html') 
+@app.route('/order_meal')
+def order_meal():
+	return render_template('order_meal.html')
+    #return redirect(url_for('order_meal.html'))
+#============================LOGIN PAGE=================================================
 
-#=================WELCOME PAGE==========================#
-	
-@app.route('/welcome')
-def welcome():
-	return render_template("welcome.html")
+@app.route('/vieworders')
+def vieworders():
+	return render_template('vieworders.html') 
 
 #====================ABOUTPAGE======================#
-
-@app.route('/about')
-def about():
-	return render_template('about.html')
+@app.route('/postmeals')
+def post():
+	return redirect(url_for('postmeals'))
+@app.route('/api/v1/postmeals')
+def postmeals():
+	return render_template('postmeals.html')
 
 
 #=======================MEAL PAGE=========================#
 @app.route('/meals')
 def meals():
 	return render_template('meals.html', meals = Meals)
-
-
-	if result > 0:
-		return render_template('meals.html', meals=meals)
-	else:
-		msg = 'No Meals Found'
-		return render_template('meals.html', msg=msg)
-
-
 
 #============MEAL DATA=========================#
 @app.route('/meal/<string:id>/')

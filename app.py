@@ -37,9 +37,60 @@ def login_page():
 			error = 'Invalid credentials. Please try again.'
 		else:
 			
-			return redirect(url_for('home'))
+			return redirect(url_for('dashboard'))
 	return render_template('login.html', error=error)
 
+
+@app.route('/logout')
+def logout():
+	session.clear()
+	flash('You are now logged out', 'success')
+	return redirect(url_for('login'))
+
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html', meals = Meals)
+
+class MealForm(Form):
+	title = StringField('Title', [validators.Length(min=1, max=200)])
+	body = TextAreaField('Body', [validators.Length(min=30)])
+
+
+@app.route('/edit_meal/<string:id>', methods=['POST', 'GET'])
+def edit_meal():
+	return render_template(id)
+        form.title.data = meal['title']
+	form.body.data = meal['body']
+
+	#form = ArticleForm(request.form)
+	if request.method == 'POST' and form.validate():
+		title = request.form['title']
+		body =  request.form['body']
+
+	flash('Meal Edited', 'success')
+
+        return redirect(url_for('dashboard'))
+        return render_template('edit_meal.html', form=form)
+
+@app.route('/add_meal', methods=['GET', 'POST'])
+def add_article():
+	form = MealForm(request.form)
+	if request.method == 'POST' and form.validate():
+		title = form.title.data
+		body = form.body.data
+
+		flash('Meal Update', 'success')
+
+		return redirect(url_for('dashboard'))
+	return render_template('edit_meal.html', form=form)
+
+
+
+@app.route('/delete_article/<string:id>', methods=['POST'])
+def delete_meal(id):
+    return redirect(url_for('dashboard'))
 #============================LOGIN PAGE==================================================#
 
 @app.route('/home')
@@ -74,8 +125,8 @@ def meals():
 
 
 #============MEAL DATA=========================#
-@app.route('/meal/<string:title>/')
-def meal(title):
+@app.route('/meal/<string:id>/')
+def meal(id):
 
 	return render_template('meal.html', meal=meal)
 

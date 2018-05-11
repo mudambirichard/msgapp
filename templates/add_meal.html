@@ -1,6 +1,9 @@
 {% extends 'layout.html' %}
 
+{% block title %}Meals{% endblock %}
+
 {% block body %}
+<div class="container">
 <h1>Add Meal</h1>
 {% from "includes/_formhelpers.html" import render_field %}
 <form method="POST" action="">
@@ -15,5 +18,6 @@
  <p><input class="btn btn-primary" type="submit" name="" value="Submit"></p>
 	
 </form>
+</div>
 
 {% endblock %}

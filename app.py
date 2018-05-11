@@ -73,15 +73,7 @@ def edit_meal():
 
 @app.route('/add_meal', methods=['GET', 'POST'])
 def add_meal():
-	form = MealForm(request.form)
-	if request.method == 'POST' and form.validate():
-		title = form.title.data
-		body = form.body.data
-
-		flash('Meal Update', 'success')
-
-		return redirect(url_for('dashboard'))
-	return render_template('add_meal.html', form=form)
+	return render_template('add_meal.html')
 
 #==============deletepage=======================#
 

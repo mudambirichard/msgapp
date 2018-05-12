@@ -30,7 +30,14 @@ class FlaskTestCase(unittest.TestCase):
     			'/login',
     			data=dict(username="wrong",  password="wrong"),
     			)
-    		#self.assertIn(b'Invalid credentials. Please try again.', response.data)
+    	
+    	#self.assertIn(b'Invalid credentials. Please try again.', response.data)
+
+        def test_logout(self):
+            tester =app.test_client(self)
+            response = tester.get('/api/v1/logout', content_type='html/text')
+            self.assertFalse(b'Please logout' in response.data)
+        
 
         def test_register(self):
             tester =app.test_client(self)

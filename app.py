@@ -49,13 +49,16 @@ def login_page():
 			
 			return redirect(url_for('dashboard'))
 	return render_template('login.html', error=error)
-
-
-@app.route('/api/v1/logout')
+#############################################
+#########        LOGOUT          ############
+#############################################
+@app.route('/logout')
 def logout():
-	session.clear()
-	flash('You are now logged out', 'success')
-	return redirect(url_for('login'))
+	return redirect(url_for('logout_page'))
+@app.route('/api/v1/logout', methods=['GET', 'POST'])
+def logout_page():
+    #return redirect(url_for('logout'))
+    return render_template('login.html')
 #====================================dashboard=====================#
 
 @app.route('/api/v1/dashboard')

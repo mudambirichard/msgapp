@@ -3,17 +3,18 @@
 
 {% block body %}
 <div class="container">
-<p>Post meal</p>
+<h1><strong>Post meal</strong></h1>
 
 <form>
-<label for="title">Title</label>
-<input type="text" name="title" placeholder="Your title" class="form-control"><br><br>
+<label for="title">Meal Title</label>
+<input type="text" name="title" placeholder="Meal title" class="form-control"><br><br>
 <label for="price">Price</label>
-<input type="number" name="price" placeholder="Your price" class="form-control"><br><br>
+<input type="number" name="price" placeholder="Meal price" class="form-control"><br><br>
 <label for="description">Description</label>
- <textarea id="description" name="description" placeholder="Write something.." style="height:200px; width: 100%;"></textarea>
+ <textarea id="description" name="description" placeholder="Write something.." style="height:100px; width: 100%;"></textarea>
  <label for="text">Meal photo</label><br><br>
  <input type="file" value="post">
+  <p><input type="post" class="btn btn-primary" value="Post Meal"></p>
 
 </form>
    {% if error %}

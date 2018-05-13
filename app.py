@@ -48,7 +48,7 @@ def login_page():
 		else:
 			
 			return redirect(url_for('dashboard'))
-	return render_template('login.html', error=error)
+        return render_template('login.html', error=error)
 #############################################
 #########        LOGOUT          ############
 #############################################
@@ -58,7 +58,7 @@ def logout():
 @app.route('/api/v1/logout', methods=['GET', 'POST'])
 def logout_page():
     #return redirect(url_for('logout'))
-    return render_template('login.html')
+    return render_template('logout.html')
 #====================================dashboard=====================#
 
 @app.route('/api/v1/dashboard')
@@ -90,17 +90,18 @@ def order_meal():
     #return redirect(url_for('order_meal.html'))
 #============================LOGIN PAGE=================================================
 
-@app.route('/vieworders')
+@app.route('/view orders')
 def vieworders():
-	return render_template('vieworders.html') 
+	return render_template('view orders.html') 
 
 #====================ABOUTPAGE======================#
-@app.route('/postmeals')
+@app.route('/post_meals')
 def post():
-	return redirect(url_for('postmeals'))
-@app.route('/api/v1/postmeals')
-def postmeals():
-	return render_template('postmeals.html')
+	return redirect(url_for('post_meals'))
+@app.route('/api/v1/post_meals')
+
+def post_meals():
+	return render_template('post_meals.html')
 
 
 #=======================MEAL PAGE=========================#

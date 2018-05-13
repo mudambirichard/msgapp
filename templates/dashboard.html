@@ -4,14 +4,15 @@
  <h1>Dashboard<small> welcome to admin page{{session.username}}</small></h1>
  <div class="container">
 
- <a class="btn btn-success" href="/add_meal">Add_Meal</a>
- <a class="btn btn-success" href="/vieworders">Vieworders</a>
+ <a class="btn btn-danger" href="/add_meal">Add Meal</a>
+ <a class="btn btn-success" href="/view orders">View orders</a>
  <br>
  <table class="table table-striped">
  <tr>
      <th>ID</th>
  	  <th>Title</th>
  	   <th>Date</th>
+ 	   <th>Price</th>
  	   <th></th>
  	   <th></th>
  </tr>
@@ -20,6 +21,7 @@
     <td>{{ meal.id }}</td>
  	<td>{{ meal.title }}</td>
  	<td>{{ meal.create_date }}</td>
+ 	<td>{{ meal.price }}</td>
  	<td><a href="/edit_meal" class="btn btn-default pull-right">Edit</a></td>
  	<td>
  	<form action="{{ url_for('delete_meal', id=meal.id)}}" method="post">
@@ -29,7 +31,6 @@
  	</form>
  		
  	</td>
- </tr>
  {% endfor %}
  	
  </table>

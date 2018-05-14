@@ -1,5 +1,6 @@
 from flask import Flask , render_template,  flash, redirect, url_for, session, request, logging
 from data import Meals
+from functools import wraps
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -46,6 +47,10 @@ def login_page():
 		if request.form['username'] != 'admin'  or  request.form['password'] != 'admin':
 			error = 'Invalid credentials. Please try again.'
 		else:
+			#if sha256_crypt.verify(password_candidate, password):
+			   #passed
+			session['logged_in'] = True
+			#session['username'] = username
 			
 			return redirect(url_for('dashboard'))
         return render_template('login.html', error=error)
@@ -53,15 +58,18 @@ def login_page():
 #########        LOGOUT          ############
 #############################################
 @app.route('/logout')
+@is_logged_in
 def logout():
 	return redirect(url_for('logout_page'))
 @app.route('/api/v1/logout', methods=['GET', 'POST'])
 def logout_page():
-    #return redirect(url_for('logout'))
-    return render_template('logout.html')
+	session.pop('logged_in', None)
+        return redirect(url_for('home'))
+   
 #====================================dashboard=====================#
 
-@app.route('/api/v1/dashboard')
+@app.route('/dashboard')
+@is_logged_in
 def dashboard():
     return render_template('dashboard.html', meals = Meals)
 
@@ -75,6 +83,7 @@ def edit_meal():
 #==========================add page========================#
 
 @app.route('/add_meal', methods=['GET', 'POST'])
+@is_logged_in
 def add_meal():
 	return render_template('add_meal.html')
 
@@ -96,10 +105,10 @@ def vieworders():
 
 #====================ABOUTPAGE======================#
 @app.route('/post_meals')
+@is_logged_in
 def post():
 	return redirect(url_for('post_meals'))
 @app.route('/api/v1/post_meals')
-
 def post_meals():
 	return render_template('post_meals.html')
 

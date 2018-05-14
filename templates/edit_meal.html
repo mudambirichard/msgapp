@@ -1,23 +1,20 @@
 {% extends 'layout.html' %}
-
 {% block body %}
+<form method="POST" action="">
 <div class="container">
+
 <h1>Edit Meal</h1>
 
-
-<form method="POST" action="">
  <div class="form-group">
  <input type="text" name="title" value="posh" class="form-control">
-
- 	
  <label for="description">Description</label>
  <textarea id="description" name="description" placeholder="Write something.." style="height:200px; width: 100%;"></textarea>
- <label for="text">Meal photo</label><br><br>
- <input type="file" value="post">
-
- <p><input class="btn btn-primary" type="submit" name="" value="Submit"></p>
-	
-</form>
 </div>
+<label for="text">Meal photo</label><br>
+<input type="file" value="post">
+ <p><input class="btn btn-primary" type="submit" name="" value="Submit"></p>
+</form>
+
+
 
 {% endblock %}

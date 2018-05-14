@@ -7,6 +7,7 @@
 <h1>Meals</h1>
 <div class="row">
 {% for meal in meals %}
+
  <div class="col-lg-4 col-md-12 ">
   
  
@@ -20,7 +21,8 @@
   <div class="card-body">
 <div class="text-white text-center d-flex align-items-center rgba-blue-strong py-5 px-4">
     <!-- Title -->
-    <h2 class="">{{ meal.title}}</h23>
+  
+<h2><a href="meal/{{meal.id}}">{{meal.title}}</a></h2>
     <h4 class="">Price{{ meal.price}}</h4>
     <p class="">{{ meal.body}}</p>
     <!-- Button -->

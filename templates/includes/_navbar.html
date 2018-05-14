@@ -24,12 +24,17 @@
      
  <ul class="nav navbar-nav navbar-right">
  
-   <li  ><a href="/api/v1/dashboard">Dashboard</a></li>
+ 
+  <li  ><a href="/dashboard">Dashboard</a></li>
+  {% if session.logged_in %}
+   <li  ><a href="/logout">Logout</a></li>
+   {% else %}
   
    <li  ><a href="/register">Register</a></li>
    <li  ><a href="/login">Login</a></li>
+   {% endif %}
 
-      <li  ><a href="/logout">Logout</a></li>
+     
 
   
   </ul>

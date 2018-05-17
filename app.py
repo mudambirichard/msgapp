@@ -45,11 +45,12 @@ def login_page():
 	error = None
 	if request.method == 'POST':
 		if request.form['username'] != 'admin'  or  request.form['password'] != 'admin':
-			error = 'Invalid credentials. Please try again.'
+			error = 'Invalid credentials. Please try again.' 'The password & username = admin'
 		else:
 			#if sha256_crypt.verify(password_candidate, password):
 			   #passed
 			session['logged_in'] = True
+			flash('You were just logged in')
 			#session['username'] = username
 			
 			return redirect(url_for('dashboard'))
@@ -64,6 +65,7 @@ def logout():
 @app.route('/api/v1/logout', methods=['GET', 'POST'])
 def logout_page():
 	session.pop('logged_in', None)
+	flash('You were just logged in')
         return redirect(url_for('home'))
    
 #====================================dashboard=====================#

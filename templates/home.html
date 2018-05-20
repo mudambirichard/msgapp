@@ -5,7 +5,46 @@
 <div class="jumbotron text-center">
 <h1>Welcome Hilton Hotel</h1>
 <p class="lead"> Hilton Hotel</p>
+
+ <a href="order_meal" class="btn btn-primary">Order meal</a>
+  <a href="welcome" class="btn btn-success">View More</a>
 	
 </div>
+
+
+<div class="container">
+
+
+<h1>Meals</h1>
+<div class="row">
+{% for meal in meals %}
+
+ <div class="col-lg-4 col-md-12 ">
+  
+ 
+<!-- Card -->
+<div class="card1 card-image">
+
+  <!-- Card image -->
+  <img class="card-img-top " src="https://image.shutterstock.com/display_pic_with_logo/564532/521741356/stock-photo-healthy-salad-bowl-with-quinoa-tomatoes-chicken-avocado-lime-and-mixed-greens-lettuce-parsley-521741356.jpg" height="150px;" width="320px;">
+
+  <!-- Card content -->
+  <div class="card-body">
+<div class="text-white text-center d-flex align-items-center rgba-blue-strong py-5 px-4">
+    <!-- Title -->
+  
+<h2><a href="meal/{{meal.id}}">{{meal.title}}</a></h2>
+    <h4 class="">Price{{ meal.price}}</h4>
+    <p class="">{{ meal.body}}</p>
+    <!-- Button -->
+   <a href="order_meal" class="btn btn-primary">Order meal</a>
+   </div>
+</div>
+  </div>
+  </div>
+ 
+{% endfor %}
+  </div>
+  </div>
 
 {% endblock %}

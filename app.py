@@ -19,6 +19,7 @@ def is_logged_in(f):
 			flash('Unauthorised, Please login', 'danger')
 			return redirect(url_for('login'))
 	return wrap
+	
 
 @app.route('/')
 def index():
